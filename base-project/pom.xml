@@ -167,7 +167,14 @@
                             </excludes>
                         </filter>
                     </filters>
-                    <finalName>uber-${project.artifactId}</finalName>
+                    <transformers>
+                        <transformer implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
+                            <manifestEntries>
+                                <Main-Class>${package}.${main-class-name}</Main-Class>
+                            </manifestEntries>
+                        </transformer>
+                    </transformers>
+                    <finalName>${project.artifactId}-${project.version}-standalone</finalName>
                 </configuration>
             </plugin>
         </plugins>
